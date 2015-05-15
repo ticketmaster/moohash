@@ -1,36 +1,37 @@
-# MooTools 1.5.1 Server
+# Moohash
 
-For more information about mootools in general I suggest you visit http://mootools.net
+For more information about mootools in general, visit http://mootools.net
+
 In short it is a library for web development, with support for OOP.
 
-Mootools Server is a stripped down version that gives you all the nice things from the mootools library, sans the browser-specific stuff
-
-# Installation
-
-* Get [Node](http://nodejs.org/)
-* run `npm install mootools`
-* Done
+This package is a port of https://github.com/vsviridov/mootools-node which implements only `toQueryString`.
 
 # Usage
 
-Calling `require('mootools')` will import it into the global scope, and you'll be able to do things like
+```js
+var request = require('superagent');
+var moohash = require('moohash');
 
-    var Application = new Class(
-    {
-        Implements: [process.EventEmitter],
-        initialize: function()
-        {
-            //initialize here
-        },
-        compute: function()
-        {
-            //some code
-            this.emit("done");
-        }
-    });
+var items = { item: [ ] };
+items.item.push({
+  col1: [ "foo" ],
+  col2: [ "bar" ]
+});
 
-    var app = new Application();
-    app.on("done", function() { /* Callback */ });
-    app.compute();
+request
+  .get('/some/url')
+  .query(moohash.toQueryString(items));
+```
 
-You can also use other things that mootools provides, like `Options` and `Events` (mootools events might not be as efficient as the native `EventEmitter` stuff)
+This causes a URL like this to be generated:
+
+```
+/some/url?item[0][col1][0]=foo&item[0][col2][0]=bar
+```
+
+# Changes from upstream
+
+- dangerous Object modifications removed
+- `_.each` instead of their custom `Object.each`
+- typeOf changed to not throw error when "item" is a string
+- expand `!= null` to `!== null && !== undefined`

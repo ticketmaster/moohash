@@ -1,24 +1,31 @@
 {
-    "name": "mootools",
-    "version": "1.5.1-2",
-    "description": "MooTools 1.5.1 Server library",
-    "keywords": ["mootools", "oop", "class"],
-    "homepage": "http://github.com/vsviridov/mootools-node",
-    "main": "./lib/mootools-core-1.5.1-server.js",
-    "author":
-    {
-        "name": "Vasili Sviridov",
-        "email": "vasili@sviridov.ca",
-        "url": "http://github.com/vsviridov/"
-    },
-    "repository":
-    {
-        "type": "git",
-        "url": "http://github.com/vsviridov/mootools-node.git"
-    },
-    "engines":
-    {
-        "node" : ">=0.4.0"
-    }
+  "name": "@ticketmaster/moohash",
+  "version": "1.5.4",
+  "description": "npm package of toQueryString from mootools-server to use with nodejs",
+  "keywords": [
+    "mootools",
+    "oop",
+    "class"
+  ],
+  "homepage": "http://github.com/Ticketmaster/moohash",
+  "main": "./lib/moohash.js",
+  "author": "Ticketmaster",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Ticketmaster/moohash.git"
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "dependencies": {
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "mocha --reporter tap test"
+  }
 }
-
